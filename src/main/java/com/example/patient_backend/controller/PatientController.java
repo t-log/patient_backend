@@ -29,4 +29,15 @@ public class PatientController {
         dao.save(p);
         return "{\"status\":\"success\"}";
     }
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/search",consumes = "application/json",produces = "application/json")
+    public List<Patient> searchPage(@RequestBody Patient p){
+        return (List<Patient>) dao.searchPatient(p.getName());
+    }
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/delete",consumes = "application/json",produces = "application/json")
+    public String deletePage(@RequestBody Patient p){
+        dao.deletePatient(p.getId());
+        return "{\"status\":\"success\"}";
+    }
 }
